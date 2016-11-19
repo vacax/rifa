@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.PantallaGanadorController">
+   <children>
+      <Label fx:id="lbGanador" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="76.0" prefWidth="619.0" text="Carlos Camacho" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAprobado" layoutX="14.0" layoutY="106.0" mnemonicParsing="false" onAction="#aprobar" prefHeight="45.0" prefWidth="217.0" text="Aprobado" />
+      <Button fx:id="btnCancelar" layoutX="406.0" layoutY="106.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="45.0" prefWidth="225.0" text="Cancelar" />
+   </children>
+</AnchorPane>

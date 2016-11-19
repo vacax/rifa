@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="RifaPucmmdb">
+  <database-model serializer="dbm" rdbms="H2" format-version="2.6">
+    <database id="1" name="RIFAPUCMM">
+      <visible>1</visible>
+    </database>
+    <schema id="2" parent="1" name="INFORMATION_SCHEMA"/>
+    <schema id="3" parent="1" name="PUBLIC">
+      <visible>1</visible>
+    </schema>
+    <table id="4" parent="3" name="GANADORES"/>
+    <table id="5" parent="3" name="POBLACIONRIFA"/>
+    <table id="6" parent="3" name="RIFA"/>
+    <table id="7" parent="3" name="USUARIO"/>
+    <column id="8" parent="4" name="ID">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(10)|4</data-type>
+      <sequence-identity>1</sequence-identity>
+      <default-expression>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_5F2AA57E_00B3_48AC_9D4D_FAEECA1482DC)</default-expression>
+    </column>
+    <column id="9" parent="4" name="APROBADO">
+      <mandatory>1</mandatory>
+      <data-type>BOOLEAN(1)|16</data-type>
+    </column>
+    <column id="10" parent="4" name="FECHAGENERACION">
+      <data-type>TIMESTAMP(23,10)|93</data-type>
+    </column>
+    <column id="11" parent="4" name="GENERADOPOR">
+      <data-type>VARBINARY(255)|-3</data-type>
+    </column>
+    <column id="12" parent="4" name="PREMIO">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="13" parent="4" name="RIFA">
+      <data-type>VARBINARY(255)|-3</data-type>
+    </column>
+    <column id="14" parent="4" name="POBLACIONRIFA_ID">
+      <data-type>BIGINT(19)|-5</data-type>
+    </column>
+    <key id="15" parent="4" name="CONSTRAINT_1">
+      <name-surrogate>1</name-surrogate>
+      <columns>ID</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="16" parent="4" name="FKCOVB9BPO0QK9RK9IRPTI63HNB">
+      <columns>POBLACIONRIFA_ID</columns>
+      <ref-key>~.POBLACIONRIFA.CONSTRAINT_4</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="17" parent="5" name="ID">
+      <mandatory>1</mandatory>
+      <data-type>BIGINT(19)|-5</data-type>
+      <sequence-identity>1</sequence-identity>
+      <default-expression>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_B12690F8_F857_48D3_8C53_85102B550AA2)</default-expression>
+    </column>
+    <column id="18" parent="5" name="CEDULA">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="19" parent="5" name="DEPARTAMENTO">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="20" parent="5" name="GRUPO">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="21" parent="5" name="HABILITADO">
+      <mandatory>1</mandatory>
+      <data-type>BOOLEAN(1)|16</data-type>
+    </column>
+    <column id="22" parent="5" name="NOMBRE">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <index id="23" parent="5" name="UK_6YF9Q8BROQN6Y4P3XBKLIOXOS_INDEX_4">
+      <columns>CEDULA</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="24" parent="5" name="CONSTRAINT_4">
+      <name-surrogate>1</name-surrogate>
+      <columns>ID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="25" parent="6" name="ID">
+      <mandatory>1</mandatory>
+      <data-type>BIGINT(19)|-5</data-type>
+      <sequence-identity>1</sequence-identity>
+      <default-expression>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_B3859FC1_FB83_4B7A_92A6_D3F79138E568)</default-expression>
+    </column>
+    <column id="26" parent="6" name="ITERACIONES">
+      <mandatory>1</mandatory>
+      <data-type>INTEGER(10)|4</data-type>
+    </column>
+    <column id="27" parent="6" name="PREMIO">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <key id="28" parent="6" name="CONSTRAINT_2">
+      <name-surrogate>1</name-surrogate>
+      <columns>ID</columns>
+      <primary>1</primary>
+    </key>
+    <column id="29" parent="7" name="USUARIO">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="30" parent="7" name="EMAIL">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="31" parent="7" name="NOMBRE">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <column id="32" parent="7" name="PASSWORD">
+      <data-type>VARCHAR(255)|12</data-type>
+    </column>
+    <key id="33" parent="7" name="CONSTRAINT_22">
+      <name-surrogate>1</name-surrogate>
+      <columns>USUARIO</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

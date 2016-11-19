@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.LoginController">
+   <children>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="376.0" text="RIFA - PUCMM">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="164.0" fitWidth="188.0" layoutX="14.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/logo_pucmm.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="202.0" layoutY="85.0" prefHeight="16.0" prefWidth="74.0" text="Usuario:" />
+      <TextField fx:id="txtUsuario" layoutX="202.0" layoutY="101.0" onAction="#entrar" prefHeight="26.0" prefWidth="188.0" />
+      <Label layoutX="202.0" layoutY="130.0" prefHeight="16.0" prefWidth="89.0" text="Contraseña:" />
+      <PasswordField fx:id="txtPassword" layoutX="201.0" layoutY="148.0" onAction="#entrar" prefHeight="26.0" prefWidth="188.0" />
+      <Button fx:id="btnCancelar" layoutX="315.0" layoutY="229.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Button fx:id="btnEntrar" layoutX="235.0" layoutY="229.0" mnemonicParsing="false" onAction="#entrar" prefHeight="26.0" prefWidth="74.0" text="Entrar" />
+      <Button fx:id="btnConfiguracion" layoutX="14.0" layoutY="229.0" mnemonicParsing="false" onAction="#configuracion" text="..." />
+   </children>
+</AnchorPane>
