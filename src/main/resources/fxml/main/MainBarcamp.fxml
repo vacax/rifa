@@ -4,9 +4,8 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="304.0" prefWidth="351.0" styleClass="background" stylesheets="@../../css/barcamp.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.MainController">
+<AnchorPane prefHeight="479.0" prefWidth="683.0" styleClass="background" stylesheets="@../../css/barcamp.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.MainController">
    <children>
       <MenuBar prefHeight="30.0" prefWidth="351.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -25,6 +24,5 @@
           </Menu>
         </menus>
       </MenuBar>
-      <BorderPane layoutY="29.0" prefHeight="275.0" prefWidth="351.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
    </children>
 </AnchorPane>

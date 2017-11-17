@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="600.0" styleClass="background" stylesheets="@../../css/barcamp.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.GeneradorSorteoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="455.0" styleClass="background" stylesheets="@../../css/barcamp.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.GeneradorSorteoController">
    <children>
-      <Button fx:id="botonGeneracion" layoutX="231.0" layoutY="64.0" mnemonicParsing="false" onAction="#generarRifa" prefHeight="26.0" prefWidth="143.0" text="Buscar Ganador" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="231.0" AnchorPane.topAnchor="64.0" />
-      <Pane fx:id="panelImagen" layoutX="99.0" layoutY="100.0" prefHeight="268.0" prefWidth="406.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="100.0" />
-      <Label fx:id="lbPremio" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="40.0" prefWidth="577.0" text="RIFA" textAlignment="CENTER" AnchorPane.bottomAnchor="368.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="14.0">
+      <Button fx:id="botonGeneracion" layoutX="158.0" layoutY="52.0" mnemonicParsing="false" onAction="#generarRifa" prefHeight="26.0" prefWidth="143.0" text="Buscar Ganador" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="52.0" />
+      <Pane fx:id="panelImagen" layoutX="26.0" layoutY="91.0" prefHeight="268.0" prefWidth="406.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="90.0" />
+      <Label fx:id="lbPremio" alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="6.0" prefHeight="40.0" prefWidth="406.0" text="RIFA" textAlignment="CENTER" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="6.0">
          <font>
             <Font size="33.0" />
          </font>

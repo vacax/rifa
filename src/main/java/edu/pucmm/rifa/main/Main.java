@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -122,50 +123,87 @@ public class Main extends Application {
             loader.setLocation(url);
             caja =  loader.load();
             rootLayout = (BorderPane) caja.getChildren().get(1);
+            rootLayout.setPadding(new Insets(0,0,0,0));
 
             MainController mainController = loader.getController();
             mainController.setMainApp(this);
 
             //Creando las imagenes.
             double tamano = 250;
-            double tamanoAlto = 700;
-            ImageView imageViewDerecha = new ImageView("/imagenes/Marco-01.png");
+            double tamanoAltoLaterales = 430;
+            ImageView imageViewDerecha = new ImageView("/imagenes/2017/barcamp_rotado_generico.png");
             imageViewDerecha.setFitWidth(tamano);
-            imageViewDerecha.setFitHeight(tamanoAlto);
+            imageViewDerecha.setFitHeight(tamanoAltoLaterales);
 
-            ImageView imageViewIzquieda = new ImageView("/imagenes/Marco-03.png");
+            ImageView imageViewIzquieda = new ImageView("/imagenes/2017/barcamp_rotado_generico.png");
             imageViewIzquieda.setFitWidth(tamano);
-            imageViewIzquieda.setFitHeight(tamanoAlto);
+            imageViewIzquieda.setFitHeight(tamanoAltoLaterales);
 
-            ImageView imageViewArriba = new ImageView("/imagenes/Marco-04.png");
-            imageViewArriba.setFitHeight(100);
+            ImageView imageViewArriba = new ImageView("/imagenes/2017/Imagen_sorteo_Generico.png");
+            imageViewArriba.setFitHeight(200);
+            imageViewArriba.setFitWidth(600);
 
-            ImageView imageViewAbajo = new ImageView("/imagenes/Marco-02.png");
-            imageViewAbajo.setFitHeight(100);
+            ImageView imageViewAbajo = new ImageView("/imagenes/2017/Patrocinadores_2017_reducida.png");
+            imageViewAbajo.setFitHeight(300);
+            imageViewAbajo.setFitWidth(1000);
 
             BorderPane paneArriba = new BorderPane();
+            //paneArriba.setStyle("-fx-border-color: black");
+            paneArriba.setPadding(new Insets(0,0,0,0));
             paneArriba.setPrefSize(200, 100);
             paneArriba.setCenter(imageViewArriba);
+            paneArriba.setLeft(null);
+            paneArriba.setRight(null);
+            paneArriba.setBottom(null);
+            paneArriba.setTop(null);
+            paneArriba.setMargin(imageViewIzquieda, new Insets(0,0,0,0));
 
             BorderPane paneAbajo = new BorderPane();
-            paneAbajo.setPrefSize(200, 100);
+            //paneAbajo.setStyle("-fx-border-color: black");
+            paneAbajo.setPadding(new Insets(0,0,0,0));
+            paneAbajo.setPrefSize(1000, 200);
             paneAbajo.setCenter(imageViewAbajo);
+            paneAbajo.setLeft(null);
+            paneAbajo.setRight(null);
+            paneAbajo.setBottom(null);
+            paneAbajo.setTop(null);
+            paneAbajo.setMargin(imageViewIzquieda, new Insets(0,0,0,0));
 
             BorderPane paneDerecha = new BorderPane();
-            paneDerecha.setPrefSize(200, 100);
+            //paneDerecha.setStyle("-fx-border-color: black");
+            paneDerecha.setPadding(new Insets(0,0,0,0));
+            paneDerecha.setPrefSize(200, tamanoAltoLaterales);
             paneDerecha.setCenter(imageViewDerecha);
+            paneDerecha.setLeft(null);
+            paneDerecha.setRight(null);
+            paneDerecha.setBottom(null);
+            paneDerecha.setTop(null);
+            paneDerecha.setMargin(imageViewIzquieda, new Insets(0,0,0,0));
 
             BorderPane paneIzquierda = new BorderPane();
-            paneIzquierda.setPrefSize(200, 100);
+            //paneIzquierda.setStyle("-fx-border-color: black");
+            paneIzquierda.setPadding(new Insets(0,0,0,0));
+            paneIzquierda.setPrefSize(200, tamanoAltoLaterales);
             paneIzquierda.setCenter(imageViewIzquieda);
+            paneIzquierda.setLeft(null);
+            paneIzquierda.setRight(null);
+            paneIzquierda.setBottom(null);
+            paneIzquierda.setTop(null);
+            paneIzquierda.setMargin(imageViewIzquieda, new Insets(0,0,0,0));
 
-
-            rootLayout.setTop(paneArriba);
+            //rootLayout.setTop(paneArriba);
             rootLayout.setRight(paneDerecha);
             rootLayout.setLeft(paneIzquierda);
+            rootLayout.setTop(null);
+            //rootLayout.setRight(null);
+            //rootLayout.setLeft(null);
             rootLayout.setBottom(paneAbajo);
+            
+            rootLayout.setMargin(paneAbajo, new Insets(0,0,0,0));
+            rootLayout.setMargin(paneDerecha, new Insets(0,0,0,0));
+            rootLayout.setMargin(paneIzquierda, new Insets(0,0,0,0));
 
-            //Incluyendo el punto de venta.
+            //Incluyendo.
             addGeneradorSorteo();
 
             // Show the scene containing the root layout.
@@ -188,10 +226,14 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/fxml/pantallas/GeneradorSorteo.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
+            //personOverview.setPrefSize(200,200);
 
             // Set person overview into the center of root layout.
             rootLayout = (BorderPane) caja.getChildren().get(1);
             rootLayout.setCenter(personOverview);
+
+
+            rootLayout.setMargin(personOverview, new Insets(0,0,0,0));
 
             // Give the controller access to the main app.
             GeneradorSorteoController controller = loader.getController();
