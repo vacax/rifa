@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.h2.tools.Server;
@@ -30,6 +31,7 @@ public class Main extends Application {
     private Stage primaryStage;
     public static Usuario usuarioMovil;
     private BorderPane rootLayout;
+    private AnchorPane caja;
 
     public static void main(String[] args) throws SQLException {
         //
@@ -118,7 +120,8 @@ public class Main extends Application {
             URL url = Main.class.getResource("/fxml/main/Main.fxml");
             System.out.println("La URL: "+url.toString());
             loader.setLocation(url);
-            rootLayout = (BorderPane) loader.load();
+            caja =  loader.load();
+            rootLayout = (BorderPane) caja.getChildren().get(1);
 
             MainController mainController = loader.getController();
             mainController.setMainApp(this);
@@ -126,33 +129,48 @@ public class Main extends Application {
             //Creando las imagenes.
             double tamano = 250;
             double tamanoAlto = 700;
-            ImageView imageViewDerecha = new ImageView("/imagenes/barcamp_rotado.png");
+            ImageView imageViewDerecha = new ImageView("/imagenes/Marco-01.png");
             imageViewDerecha.setFitWidth(tamano);
             imageViewDerecha.setFitHeight(tamanoAlto);
 
-            ImageView imageViewIzquieda = new ImageView("/imagenes/barcamp_rotado.png");
+            ImageView imageViewIzquieda = new ImageView("/imagenes/Marco-03.png");
             imageViewIzquieda.setFitWidth(tamano);
             imageViewIzquieda.setFitHeight(tamanoAlto);
 
-            ImageView imageViewArriba = new ImageView("/imagenes/Patrocinadores_rifa.png");
+            ImageView imageViewArriba = new ImageView("/imagenes/Marco-04.png");
             imageViewArriba.setFitHeight(100);
+
+            ImageView imageViewAbajo = new ImageView("/imagenes/Marco-02.png");
+            imageViewAbajo.setFitHeight(100);
+
+            BorderPane paneArriba = new BorderPane();
+            paneArriba.setPrefSize(200, 100);
+            paneArriba.setCenter(imageViewArriba);
 
             BorderPane paneAbajo = new BorderPane();
             paneAbajo.setPrefSize(200, 100);
-            paneAbajo.setCenter(imageViewArriba);
+            paneAbajo.setCenter(imageViewAbajo);
+
+            BorderPane paneDerecha = new BorderPane();
+            paneDerecha.setPrefSize(200, 100);
+            paneDerecha.setCenter(imageViewDerecha);
+
+            BorderPane paneIzquierda = new BorderPane();
+            paneIzquierda.setPrefSize(200, 100);
+            paneIzquierda.setCenter(imageViewIzquieda);
 
 
-            rootLayout.setRight(imageViewDerecha);
-            rootLayout.setLeft(imageViewIzquieda);
+            rootLayout.setTop(paneArriba);
+            rootLayout.setRight(paneDerecha);
+            rootLayout.setLeft(paneIzquierda);
             rootLayout.setBottom(paneAbajo);
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-
 
             //Incluyendo el punto de venta.
             addGeneradorSorteo();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(caja);
+            primaryStage.setScene(scene);
 
             //
             primaryStage.setResizable(true);
@@ -172,6 +190,7 @@ public class Main extends Application {
             AnchorPane personOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
+            rootLayout = (BorderPane) caja.getChildren().get(1);
             rootLayout.setCenter(personOverview);
 
             // Give the controller access to the main app.
