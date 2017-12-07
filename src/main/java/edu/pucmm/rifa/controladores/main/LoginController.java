@@ -40,7 +40,8 @@ public class LoginController {
         if(usuarioMovil!=null){
             Main.usuarioMovil = usuarioMovil;
             System.out.println("Usuario autenticado: "+usuarioMovil.getNombre());
-            mainApp.initRootLayout();
+            //mainApp.initRootLayout();
+            mainApp.initRifaNavidena();
         } else{
             System.out.println("Error de autentificacion");
         }

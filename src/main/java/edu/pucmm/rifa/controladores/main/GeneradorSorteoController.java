@@ -162,6 +162,7 @@ public class GeneradorSorteoController {
                 }
             });
 
+            //
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Ganador de la Rifa");
             dialogStage.initModality(Modality.WINDOW_MODAL);

@@ -1,0 +1,23 @@
+
+
+.imagenes {
+    -fx-background-image: url("../imagenes/navidad/Marco-01.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+
+.imageneArriba {
+    -fx-background-image: url("../imagenes/navidad/Marco-02.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+
+.imageneAbajo {
+    -fx-background-image: url("../imagenes/navidad/Marco-04.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+}
+
+.bordeColor{
+    -fx-border-color: blue;
+}

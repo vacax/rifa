@@ -1,9 +1,11 @@
 package edu.pucmm.rifa.controladores.main;
 
 import edu.pucmm.rifa.main.Main;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -13,6 +15,9 @@ import javafx.stage.Stage;
 public class MainController {
 
     private Main mainApp;
+
+    @FXML
+    private StackPane panelRifa;
 
     public void setMainApp(Main mainApp){
         this.mainApp = mainApp;
@@ -73,5 +78,13 @@ public class MainController {
     public void cerrar(){
         System.out.println("Cerrando la aplicación");
         System.exit(0);
+    }
+
+    public StackPane getPanelRifa() {
+        return panelRifa;
+    }
+
+    public void setPanelRifa(StackPane panelRifa) {
+        this.panelRifa = panelRifa;
     }
 }

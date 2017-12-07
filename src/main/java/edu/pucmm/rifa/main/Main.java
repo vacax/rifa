@@ -9,6 +9,7 @@ import edu.pucmm.rifa.utilidades.Utilidades;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -33,6 +34,7 @@ public class Main extends Application {
     public static Usuario usuarioMovil;
     private BorderPane rootLayout;
     private AnchorPane caja;
+    
 
     public static void main(String[] args) throws SQLException {
         //
@@ -130,22 +132,22 @@ public class Main extends Application {
 
             //Creando las imagenes.
             double tamano = 250;
-            double tamanoAltoLaterales = 430;
-            ImageView imageViewDerecha = new ImageView("/imagenes/2017/barcamp_rotado_generico.png");
+            double tamanoAltoLaterales = 300;
+            ImageView imageViewDerecha = new ImageView("/imagenes/navidad/Marco-01.png");
             imageViewDerecha.setFitWidth(tamano);
             imageViewDerecha.setFitHeight(tamanoAltoLaterales);
 
-            ImageView imageViewIzquieda = new ImageView("/imagenes/2017/barcamp_rotado_generico.png");
+            ImageView imageViewIzquieda = new ImageView("/imagenes/navidad/Marco-03.png");
             imageViewIzquieda.setFitWidth(tamano);
             imageViewIzquieda.setFitHeight(tamanoAltoLaterales);
 
-            ImageView imageViewArriba = new ImageView("/imagenes/2017/Imagen_sorteo_Generico.png");
+            ImageView imageViewArriba = new ImageView("/imagenes/navidad/Marco-02.png");
             imageViewArriba.setFitHeight(200);
             imageViewArriba.setFitWidth(600);
 
-            ImageView imageViewAbajo = new ImageView("/imagenes/2017/Patrocinadores_2017_reducida.png");
-            imageViewAbajo.setFitHeight(300);
-            imageViewAbajo.setFitWidth(1000);
+            ImageView imageViewAbajo = new ImageView("/imagenes/navidad/Marco-04.png");
+            imageViewAbajo.setFitHeight(200);
+            imageViewAbajo.setFitWidth(300);
 
             BorderPane paneArriba = new BorderPane();
             //paneArriba.setStyle("-fx-border-color: black");
@@ -219,6 +221,42 @@ public class Main extends Application {
         }
     }
 
+    public void initRifaNavidena() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            URL url = Main.class.getResource("/fxml/main/MainBarcamp.fxml");
+            System.out.println("La URL: "+url.toString());
+            loader.setLocation(url);
+            caja =  loader.load();
+
+            MainController mainController = loader.getController();
+            mainController.setMainApp(this);
+
+            //Incluyendo el punto del sorteo.
+            FXMLLoader loaderTemp = new FXMLLoader();
+            loaderTemp.setLocation(Main.class.getResource("/fxml/pantallas/GeneradorSorteo.fxml"));
+            AnchorPane loteriaPane = (AnchorPane) loaderTemp.load();
+            mainController.getPanelRifa().getChildren().add(loteriaPane);
+
+            //
+            GeneradorSorteoController controllerLoteria = loaderTemp.getController();
+            controllerLoteria.inicializarApp(this);
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(caja);
+            primaryStage.setScene(scene);
+
+            //
+            primaryStage.setResizable(true);
+            primaryStage.setMaximized(true);
+            primaryStage.show();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void addGeneradorSorteo(){
         try {
@@ -235,7 +273,7 @@ public class Main extends Application {
 
             rootLayout.setMargin(personOverview, new Insets(0,0,0,0));
 
-            // Give the controller access to the main app.
+            //
             GeneradorSorteoController controller = loader.getController();
             controller.inicializarApp(this);
 
