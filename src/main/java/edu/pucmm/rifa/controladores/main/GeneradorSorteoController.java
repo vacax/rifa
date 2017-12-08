@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -35,7 +36,7 @@ public class GeneradorSorteoController {
     @FXML
     private Button botonGeneracion;
     @FXML
-    private Pane panelImagen;
+    private StackPane panelImagen;
     @FXML
     private Label lbPremio;
 
@@ -71,7 +72,7 @@ public class GeneradorSorteoController {
         }
         panelImagen.getChildren().removeAll();
 
-        String archivo = GeneradorSorteoController.class.getResource("/imagenes/tombola1.gif").toExternalForm();
+        String archivo = GeneradorSorteoController.class.getResource("/imagenes/tombola4.gif").toExternalForm();
         System.out.println("El archivo: "+archivo);
         Animation ani = new AnimatedGif(archivo, 500);
         ani.setOnFinished(new EventHandler<ActionEvent>() {
