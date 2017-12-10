@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.PantallaGanadorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pucmm.rifa.controladores.main.PantallaGanadorController">
    <children>
-      <Label fx:id="lbGanador" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="76.0" prefWidth="764.0" text="Carlos Camacho" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="lbGanador" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" layoutX="14.0" layoutY="14.0" prefHeight="237.0" prefWidth="764.0" text="Carlos Camacho" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font name="System Bold" size="60.0" />
          </font>
       </Label>
-      <Button fx:id="btnAprobado" layoutX="14.0" layoutY="106.0" mnemonicParsing="false" onAction="#aprobar" prefHeight="45.0" prefWidth="217.0" text="Aprobado" />
-      <Button fx:id="btnCancelar" layoutX="549.0" layoutY="106.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="45.0" prefWidth="225.0" text="Cancelar" />
+      <Button fx:id="btnAprobado" layoutX="14.0" layoutY="262.0" mnemonicParsing="false" onAction="#aprobar" prefHeight="45.0" prefWidth="217.0" text="Aprobado" />
+      <Button fx:id="btnCancelar" layoutX="549.0" layoutY="262.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="45.0" prefWidth="225.0" text="Cancelar" />
    </children>
 </AnchorPane>
