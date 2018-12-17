@@ -1,6 +1,7 @@
 package edu.pucmm.rifa.controladores.main;
 
 import edu.pucmm.rifa.main.Main;
+import edu.pucmm.rifa.servicios.PoblacionRifaService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,6 +22,8 @@ public class MainController {
 
     public void setMainApp(Main mainApp){
         this.mainApp = mainApp;
+        //
+        PoblacionRifaService.getInstance().cargarControlDepartamento();
     }
 
     public void poblacionRifa(){
@@ -61,6 +64,32 @@ public class MainController {
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Listado de Ganadores");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(mainApp.getPrimaryStage());
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            //Mostrando y esperando el cierre.
+            dialogStage.showAndWait();
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void noPresentes(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/fxml/pantallas/PoblacionRifaNoPresente.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            PoblacionRifaNoPresenteController poblacionRifaNoPresenteController = loader.getController();
+            poblacionRifaNoPresenteController.setMainApp(mainApp);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Listado de Participantes No Presentes");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setResizable(false);
             dialogStage.initOwner(mainApp.getPrimaryStage());

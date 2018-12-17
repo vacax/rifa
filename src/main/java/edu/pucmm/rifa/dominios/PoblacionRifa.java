@@ -17,6 +17,16 @@ public class PoblacionRifa implements Serializable {
     private String nombre;
     private String departamento;
     private boolean habilitado = true;
+    private boolean noPresente = false;
+    private boolean ganador = false;
+
+    public boolean isGanador() {
+        return ganador;
+    }
+
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
+    }
 
     public Long getId() {
         return id;
@@ -56,5 +66,25 @@ public class PoblacionRifa implements Serializable {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+
+    public boolean isNoPresente() {
+        return noPresente;
+    }
+
+    public void setNoPresente(boolean noPresente) {
+        this.noPresente = noPresente;
+    }
+
+    @Override
+    public String toString() {
+        return "PoblacionRifa{" +
+                "id=" + id +
+                ", cedula='" + cedula + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", departamento='" + departamento + '\'' +
+                ", habilitado=" + habilitado +
+                ", noPresente=" + noPresente +
+                '}';
     }
 }

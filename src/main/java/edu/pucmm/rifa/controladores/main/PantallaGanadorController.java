@@ -49,7 +49,7 @@ public class PantallaGanadorController {
     }
 
     public void cancelar(){
-        canceladoGanadoresListener.notify(null, "", null);
+        canceladoGanadoresListener.notify(null, ganadores, null);
     }
 
     public void setMainApp(Main mainApp) {

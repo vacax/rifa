@@ -6,10 +6,7 @@ import edu.pucmm.rifa.main.Main;
 import edu.pucmm.rifa.servicios.GanadoresService;
 import edu.pucmm.rifa.servicios.PoblacionRifaService;
 import edu.pucmm.rifa.servicios.RifaService;
-import edu.pucmm.rifa.utilidades.AnimatedGif;
-import edu.pucmm.rifa.utilidades.Animation;
-import edu.pucmm.rifa.utilidades.IObserver;
-import edu.pucmm.rifa.utilidades.SubjectHelper;
+import edu.pucmm.rifa.utilidades.*;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -64,9 +61,16 @@ public class GeneradorSorteoController {
         System.out.println("Generar la rifa....");
         if(poblacionRifaService.getCantidadPoblacionTotal() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Sin Concursantes");
+            alert.setTitle("Sin Lista de Participantes");
             alert.setHeaderText(null);
-            alert.setContentText("No existe concursantes, debe crear uno");
+            alert.setContentText("No existen concursantes, debe crear uno");
+            alert.showAndWait();
+            return;
+        }else if(poblacionRifaService.getCantidadPoblacionTotalPresentesNoGanadores() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sin Participantes Disponibles");
+            alert.setHeaderText(null);
+            alert.setContentText("Todos los Participantes tienen premios");
             alert.showAndWait();
             return;
         }
@@ -103,8 +107,6 @@ public class GeneradorSorteoController {
                 System.out.println("Recuperando el valor...");
                 ganadores = rifaService.getGanadoresRamdon();
                 System.out.println("El ganador es: "+ganadores.getPoblacionRifa().getCedula()+" - "+ganadores.getPoblacionRifa().getNombre());
-
-
                 return null;
             }
         };
@@ -159,7 +161,7 @@ public class GeneradorSorteoController {
             pantallaGanadorController.addCanceladoGanadoreLista(new IObserver() {
                 @Override
                 public void update(Class clase, Object argumento, Enum anEnum) {
-                    buscarOtro();
+                    buscarOtro((Ganadores) argumento);
                 }
             });
 
@@ -172,7 +174,7 @@ public class GeneradorSorteoController {
             dialogStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                    buscarOtro();
+                    buscarOtro(null);
                 }
             });
             dialogStage.initOwner(main.getPrimaryStage());
@@ -191,9 +193,13 @@ public class GeneradorSorteoController {
     }
 
     /**
-     *
+     * Prepara el software para marcar al participante como no asistio.
+     * @param ganadorNoAsistio
      */
-    public void buscarOtro(){
+    public void buscarOtro(Ganadores ganadorNoAsistio){
+        if(ganadorNoAsistio!=null){
+            poblacionRifaService.marcarParticipanteNoAsistio(ganadorNoAsistio.getPoblacionRifa());
+        }
         ganadores = null;
         botonGeneracion.setDisable(false);
         ventanaGanadores.close();

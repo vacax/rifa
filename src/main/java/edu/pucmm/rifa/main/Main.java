@@ -4,6 +4,7 @@ import edu.pucmm.rifa.controladores.main.GeneradorSorteoController;
 import edu.pucmm.rifa.controladores.main.LoginController;
 import edu.pucmm.rifa.controladores.main.MainController;
 import edu.pucmm.rifa.dominios.Usuario;
+import edu.pucmm.rifa.encapsulaciones.ControlDepartamentos;
 import edu.pucmm.rifa.servicios.UsuarioServices;
 import edu.pucmm.rifa.utilidades.Utilidades;
 import javafx.application.Application;
@@ -34,6 +35,7 @@ public class Main extends Application {
     public static Usuario usuarioMovil;
     private BorderPane rootLayout;
     private AnchorPane caja;
+    public static ControlDepartamentos controlDepartamentos;
     
 
     public static void main(String[] args) throws SQLException {

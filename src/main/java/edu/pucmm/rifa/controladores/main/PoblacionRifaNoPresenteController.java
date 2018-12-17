@@ -1,7 +1,6 @@
 package edu.pucmm.rifa.controladores.main;
 
 import edu.pucmm.rifa.dominios.PoblacionRifa;
-import edu.pucmm.rifa.encapsulaciones.ControlDepartamentos;
 import edu.pucmm.rifa.encapsulaciones.PoblacionRifaData;
 import edu.pucmm.rifa.main.Main;
 import edu.pucmm.rifa.servicios.PoblacionRifaService;
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * Created by vacax on 06/11/16.
  */
-public class PoblacionRifaController {
+public class PoblacionRifaNoPresenteController {
 
     @FXML
     private TableView<PoblacionRifaData> tabla;
@@ -42,16 +41,21 @@ public class PoblacionRifaController {
         cedulaCol.setCellValueFactory(cellData -> cellData.getValue().getCedula());
         nombreCol.setCellValueFactory(cellData -> cellData.getValue().getNombre());
         departamentoCol.setCellValueFactory(cellData -> cellData.getValue().getDepartamento());
+
+        //listando el metodo.
         cargarPoblacionRifa();
 
 
     }
 
+    /**
+     * 
+     */
     private void cargarPoblacionRifa() {
         //limpiar
         data.clear();
         //seteando la información
-        List<PoblacionRifa> lista = poblacionRifaService.getListaPoblacionHabilitado();
+        List<PoblacionRifa> lista = poblacionRifaService.getListaPoblacionHabilitadoNoPresente();
         for(PoblacionRifa p : lista){
            data.add(new PoblacionRifaData(p));
         }
@@ -61,42 +65,6 @@ public class PoblacionRifaController {
     @FXML
     private void buscar(){
         System.out.println("Filtrando...");
-    }
-
-    @FXML
-    private void cargar(){
-        System.out.println("Cargando la información");
-        try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("xlsx", "*.xlsx")
-            );
-            fileChooser.setTitle("Open Resource File");
-            File archivo = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
-
-            if(archivo!=null) {
-                System.out.println("La ruta: "+archivo.getPath());
-                List<PoblacionRifa> listaDesdeArchivoExcel = Utilidades.getListaDesdeArchivoExcel(archivo.getPath());
-                poblacionRifaService.cargarListaPoblacionRifa(listaDesdeArchivoExcel);
-                //
-                poblacionRifaService.cargarControlDepartamento();
-                Main.controlDepartamentos.listarDepartamentos();
-                //
-                cargarPoblacionRifa();
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void limpiar(){
-        System.out.println("Limpiando...");
-        poblacionRifaService.limpiarPoblacionRifa();
-        Main.controlDepartamentos = new ControlDepartamentos();
-        cargarPoblacionRifa();
     }
 
     public void setMainApp(Main mainApp){

@@ -14,6 +14,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#poblacionRifa" text="Población Rifa" />
                   <MenuItem mnemonicParsing="false" onAction="#listaGanadores" text="Ganadores" />
+                  <MenuItem mnemonicParsing="false" onAction="#noPresentes" text="No Presentes" />
                   <MenuItem mnemonicParsing="false" onAction="#poblacionRifa" text="Rifas" />
                   <MenuItem mnemonicParsing="false" onAction="#cerrar" text="Close" />
             </items>

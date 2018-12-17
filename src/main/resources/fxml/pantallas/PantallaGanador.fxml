@@ -13,6 +13,6 @@
          </font>
       </Label>
       <Button fx:id="btnAprobado" layoutX="14.0" layoutY="262.0" mnemonicParsing="false" onAction="#aprobar" prefHeight="45.0" prefWidth="217.0" text="Aprobado" />
-      <Button fx:id="btnCancelar" layoutX="549.0" layoutY="262.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="45.0" prefWidth="225.0" text="Cancelar" />
+      <Button fx:id="btnCancelar" layoutX="549.0" layoutY="262.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="45.0" prefWidth="225.0" text="No Presente" />
    </children>
 </AnchorPane>

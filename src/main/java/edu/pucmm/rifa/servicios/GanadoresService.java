@@ -59,6 +59,10 @@ public class GanadoresService extends GestionDb<Ganadores> {
 
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
+        //actualizando la población.
+        PoblacionRifa p = em.find(PoblacionRifa.class, ganadores.getPoblacionRifa().getId());
+        p.setGanador(true);
+        //creando el nuevo ganador.
         em.persist(ganadores);
         em.getTransaction().commit();
 

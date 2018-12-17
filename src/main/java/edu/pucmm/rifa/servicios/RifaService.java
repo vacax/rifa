@@ -4,8 +4,9 @@ import edu.pucmm.rifa.dominios.Ganadores;
 import edu.pucmm.rifa.dominios.PoblacionRifa;
 import edu.pucmm.rifa.dominios.Rifa;
 import edu.pucmm.rifa.main.Main;
+import edu.pucmm.rifa.utilidades.SinParticipantesException;
 
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -33,7 +34,35 @@ public class RifaService extends GestionDb<Rifa> {
         return instance;
     }
 
-    public Ganadores getGanadoresRamdon(){
+    public Ganadores getGanadoresRamdon() throws SinParticipantesException {
+        Ganadores ganador = null;
+        //recuperando la cantidad de elementos:
+        List<PoblacionRifa> listaParticipantes = poblacionRifaService.getListaPoblacionHabilitadoYPresenteNoGanador();
+        System.out.println("La cantidad de participantes habiles: "+listaParticipantes.size());
+        if(listaParticipantes.isEmpty()){
+            throw new SinParticipantesException("No existen participantes disponibles");
+        }
+        System.out.println("Antes de ordenar: "+listaParticipantes.get(0).getNombre());
+        Collections.shuffle(listaParticipantes);
+        System.out.println("Despues de ordenar: "+listaParticipantes.get(0).getNombre());
+        //
+        Random rand = new Random();
+        PoblacionRifa seleccionado = listaParticipantes.get(rand.nextInt(listaParticipantes.size()));
+        //
+        ganador = new Ganadores();
+        ganador.setFechaGeneracion(new Date());
+        ganador.setGeneradoPor(Main.usuarioMovil);
+        ganador.setPoblacionRifa(seleccionado);
+        ganador.setPremio("Validando el premio....");
+        //
+        return ganador;
+    }
+
+    /**
+     * Metodo para realizar la consulta de los ganadores.
+     * @return
+     */
+    public Ganadores getGanadoresRamdon2(){
         Ganadores ganador = null;
         long cantidad = poblacionRifaService.getCantidadPoblacionTotal();
         System.out.println("El total: "+cantidad);
@@ -51,7 +80,7 @@ public class RifaService extends GestionDb<Rifa> {
                 ganador.setFechaGeneracion(new Date());
                 ganador.setGeneradoPor(Main.usuarioMovil);
                 ganador.setPoblacionRifa(poblacionRifa);
-                ganador.setPremio("Valiando el premio....");
+                ganador.setPremio("Validando el premio....");
             }
         }
 
