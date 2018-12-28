@@ -2,6 +2,7 @@ package edu.pucmm.rifa.controladores.main;
 
 import edu.pucmm.rifa.dominios.Ganadores;
 import edu.pucmm.rifa.dominios.Rifa;
+import edu.pucmm.rifa.jms.Productor;
 import edu.pucmm.rifa.main.Main;
 import edu.pucmm.rifa.servicios.GanadoresService;
 import edu.pucmm.rifa.servicios.PoblacionRifaService;
@@ -25,6 +26,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.controlsfx.dialog.CommandLinksDialog;
 
+import javax.jms.JMSException;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by vacax on 23/10/16.
  */
@@ -44,6 +49,7 @@ public class GeneradorSorteoController {
     private Rifa rifa;
     private Ganadores ganadores;
     private Stage ventanaGanadores;
+    private IObserver iObserver;
 
 
 
@@ -55,6 +61,26 @@ public class GeneradorSorteoController {
         //
         //lbPremio.setText(rifa.getPremio());
         lbPremio.setText("");
+        //
+        System.out.println("Agregando listener JMS boton inicio en: "+this.getClass().getName());
+        Main.consumidor.addMensajeListener(new IObserver() {
+            @Override
+            public void update(Class clase, Object argumento, Enum anEnum) {
+                String mensaje = (String) argumento;
+                System.out.println("El mensaje: "+mensaje);
+                if(mensaje.equalsIgnoreCase("inicio")) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            //javaFX operations should go here
+                            botonGeneracion.fire();
+                        }
+                    });
+                }
+            }
+        });
+
+
     }
 
     public void generarRifa(){
@@ -138,6 +164,8 @@ public class GeneradorSorteoController {
         //
         botonGeneracion.setDisable(false);
         ventanaGanadores.close();
+        //
+        Main.consumidor.removeMensajeListener(iObserver);
     }
 
     /**
@@ -155,7 +183,9 @@ public class GeneradorSorteoController {
             pantallaGanadorController.addAprobadoGanadoresListener(new IObserver() {
                 @Override
                 public void update(Class clase, Object argumento, Enum anEnum) {
-                    aprobado();
+                    if(ganadores!=null) {
+                        aprobado();
+                    }
                 }
             });
             pantallaGanadorController.addCanceladoGanadoreLista(new IObserver() {
@@ -164,6 +194,8 @@ public class GeneradorSorteoController {
                     buscarOtro((Ganadores) argumento);
                 }
             });
+            //
+            new Productor().enviarMensaje("pantalla_ganadores");
 
             //
             Stage dialogStage = new Stage();
@@ -181,6 +213,38 @@ public class GeneradorSorteoController {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            //evento para cerrar la ventana.
+            System.out.println("Agregando listener JMS para cierre en: "+this.getClass().getName());
+            iObserver=new IObserver() {
+                @Override
+                public void update(Class clase, Object argumento, Enum anEnum) {
+                    //
+                    List<String> lista = Arrays.asList("cancelar");
+                    String mensaje = (String)argumento;
+                    if(lista.contains(mensaje)) {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                //javaFX operations should go here
+                                if(mensaje.equalsIgnoreCase("cancelar")){
+                                    dialogStage.close();
+                                    buscarOtro(null);
+
+                                    //Notificando al cliente que seleccionó la información.
+                                    try {
+                                        new Productor().enviarMensaje("completado");
+                                    } catch (JMSException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+            Main.consumidor.addMensajeListener(iObserver);
+
+
             //
             ventanaGanadores = dialogStage;
 
@@ -197,12 +261,13 @@ public class GeneradorSorteoController {
      * @param ganadorNoAsistio
      */
     public void buscarOtro(Ganadores ganadorNoAsistio){
-        if(ganadorNoAsistio!=null){
+        if(ganadorNoAsistio!=null && ganadorNoAsistio.getPoblacionRifa()!=null){
             poblacionRifaService.marcarParticipanteNoAsistio(ganadorNoAsistio.getPoblacionRifa());
         }
         ganadores = null;
         botonGeneracion.setDisable(false);
         ventanaGanadores.close();
+        Main.consumidor.removeMensajeListener(iObserver);
     }
 
     public void inicializarApp(Main main) {

@@ -15,6 +15,7 @@ public class SubjectHelper implements ISubject {
     }
 
     public void removeObserver(IObserver observador) {
+        System.out.println("Removiendo obsevador");
         listaObservadores.remove(observador);
     }
 

@@ -5,6 +5,7 @@ import edu.pucmm.rifa.controladores.main.LoginController;
 import edu.pucmm.rifa.controladores.main.MainController;
 import edu.pucmm.rifa.dominios.Usuario;
 import edu.pucmm.rifa.encapsulaciones.ControlDepartamentos;
+import edu.pucmm.rifa.jms.Consumidor;
 import edu.pucmm.rifa.servicios.UsuarioServices;
 import edu.pucmm.rifa.utilidades.Utilidades;
 import javafx.application.Application;
@@ -36,6 +37,7 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private AnchorPane caja;
     public static ControlDepartamentos controlDepartamentos;
+    public static Consumidor consumidor;
     
 
     public static void main(String[] args) throws SQLException {
@@ -45,12 +47,20 @@ public class Main extends Application {
         //
         Utilidades.agregarSerializacionUniRest();
         //
+        consumidor = new Consumidor();
+        try {
+            consumidor.conectar();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //
         launch(args);
     }
 
     @Override
     protected void finalize() throws Throwable {
         stopDb();
+        consumidor.cerrarConexion();
         super.finalize();
     }
 
