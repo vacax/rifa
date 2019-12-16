@@ -128,7 +128,9 @@ public class PoblacionRifaService extends GestionDb<PoblacionRifa> {
         em.getTransaction().begin();
         em.createQuery("delete from Ganadores ").executeUpdate();
         em.createQuery("delete from PoblacionRifa").executeUpdate();
+        //em.createNativeQuery("ALTER TABLE poblacionrifa AUTO_INCREMENT = 1").executeUpdate();
         em.getTransaction().commit();
+
     }
 
     /**
