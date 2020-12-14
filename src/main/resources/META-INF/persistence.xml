@@ -9,6 +9,7 @@
         <class>edu.pucmm.rifa.dominios.PoblacionRifa</class>
         <class>edu.pucmm.rifa.dominios.Ganadores</class>
         <class>edu.pucmm.rifa.dominios.Rifa</class>
+        <class>edu.pucmm.rifa.dominios.Parametro</class>
         <properties>
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />-->
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/rifaPucmm" />

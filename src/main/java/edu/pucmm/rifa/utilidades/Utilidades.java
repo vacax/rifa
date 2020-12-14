@@ -46,6 +46,8 @@ public class Utilidades {
     }
 
     /**
+     * El formato que recibie es un excel tomando la información desde la linea 1 con el siguiente forma:
+     * cedula, nombre, departamento, posicion, campus
      *
      * @param rutaArchivo
      * @return
@@ -83,6 +85,12 @@ public class Utilidades {
                         break;
                     case 2:
                         poblacionRifa.setDepartamento(formatter.formatCellValue(cell));
+                        break;
+                    case 3:
+                        poblacionRifa.setPosicion(formatter.formatCellValue(cell));
+                        break;
+                    case 4:
+                        poblacionRifa.setCampus(formatter.formatCellValue(cell));
                         break;
                 }
 

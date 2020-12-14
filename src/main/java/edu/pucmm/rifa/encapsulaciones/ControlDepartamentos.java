@@ -8,11 +8,14 @@ public class ControlDepartamentos {
 
     Map<String,Departamentos> listaDepartamentos=new HashMap<>();
     Ganadores ultimoGanador;
+    Map<String,Campus> listaCampus=new HashMap<>();
+    Stack<Campus> pilaCampus = new Stack<>();
+
 
     /**
      * 
      */
-    public void listarDepartamentos(){
+    public void imprimirListarDepartamentos(){
         System.out.println("Listando la información de los departamentos....");
         System.out.println("==================================================");
         Collection<Departamentos> values = listaDepartamentos.values();
@@ -38,6 +41,37 @@ public class ControlDepartamentos {
         this.ultimoGanador = ultimoGanador;
     }
 
+    public void imprimirListaCampus(){
+        System.out.println("Listando la información de los Campus");
+        System.out.println("==================================================");
+        Collection<Campus> values = listaCampus.values();
+        for(Campus d : values){
+            System.out.println(d.toString());
+        }
+        System.out.println("==================================================");
+    }
+
+    public void setListaCampus(Map<String, Campus> listaCampus) {
+        this.listaCampus = listaCampus;
+    }
+
+    public Map<String, Campus> getListaCampus() {
+        return listaCampus;
+    }
+
+    public String getProximoCampus(){
+        String campus = "";
+        if(pilaCampus.isEmpty()){
+            System.out.println("Llenando la lista de campus");
+            Collection<Campus> values = listaCampus.values();
+            for(Campus c :  values){
+                pilaCampus.push(c);
+            }
+        }
+        campus = pilaCampus.pop().getNombre();
+        System.out.println("Retornando el proximo campus: "+campus);
+        return campus;
+    }
 }
 
 

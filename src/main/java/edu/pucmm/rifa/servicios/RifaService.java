@@ -1,8 +1,10 @@
 package edu.pucmm.rifa.servicios;
 
 import edu.pucmm.rifa.dominios.Ganadores;
+import edu.pucmm.rifa.dominios.Parametro;
 import edu.pucmm.rifa.dominios.PoblacionRifa;
 import edu.pucmm.rifa.dominios.Rifa;
+import edu.pucmm.rifa.encapsulaciones.Campus;
 import edu.pucmm.rifa.main.Main;
 import edu.pucmm.rifa.utilidades.SinParticipantesException;
 
@@ -37,7 +39,7 @@ public class RifaService extends GestionDb<Rifa> {
     public Ganadores getGanadoresRamdon() throws SinParticipantesException {
         Ganadores ganador = null;
         //recuperando la cantidad de elementos:
-        List<PoblacionRifa> listaParticipantes = poblacionRifaService.getListaPoblacionHabilitadoYPresenteNoGanador();
+        List<PoblacionRifa> listaParticipantes = poblacionRifaService.getListaPoblacionHabilitadoYPresenteNoGanador(Main.controlDepartamentos.getProximoCampus());
         System.out.println("La cantidad de participantes habiles: "+listaParticipantes.size());
         if(listaParticipantes.isEmpty()){
             throw new SinParticipantesException("No existen participantes disponibles");
@@ -94,7 +96,6 @@ public class RifaService extends GestionDb<Rifa> {
     public Rifa getRifaDisponible(){
         return findAll().get(0);
     }
-
 
 
 }

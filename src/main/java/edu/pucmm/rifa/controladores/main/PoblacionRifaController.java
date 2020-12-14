@@ -25,7 +25,7 @@ public class PoblacionRifaController {
     private TableView<PoblacionRifaData> tabla;
 
     @FXML
-    private TableColumn<PoblacionRifaData, String> cedulaCol, nombreCol,departamentoCol;
+    private TableColumn<PoblacionRifaData, String> cedulaCol, nombreCol,departamentoCol, posicionCol, campusCol;
     @FXML
     private TableColumn<PoblacionRifaData, Long> idCol;
 
@@ -42,6 +42,8 @@ public class PoblacionRifaController {
         cedulaCol.setCellValueFactory(cellData -> cellData.getValue().getCedula());
         nombreCol.setCellValueFactory(cellData -> cellData.getValue().getNombre());
         departamentoCol.setCellValueFactory(cellData -> cellData.getValue().getDepartamento());
+        posicionCol.setCellValueFactory(cellData -> cellData.getValue().getPosicion());
+        campusCol.setCellValueFactory(cellData -> cellData.getValue().getCampus());
         cargarPoblacionRifa();
 
 
@@ -80,7 +82,7 @@ public class PoblacionRifaController {
                 poblacionRifaService.cargarListaPoblacionRifa(listaDesdeArchivoExcel);
                 //
                 poblacionRifaService.cargarControlDepartamento();
-                Main.controlDepartamentos.listarDepartamentos();
+                Main.controlDepartamentos.imprimirListarDepartamentos();
                 //
                 cargarPoblacionRifa();
 

@@ -13,6 +13,8 @@ public class PoblacionRifaData {
     private StringProperty cedula;
     private StringProperty nombre;
     private StringProperty departamento;
+    private StringProperty posicion;
+    private StringProperty campus;
     private BooleanProperty habilitado;
 
     public PoblacionRifaData(PoblacionRifa poblacionRifa){
@@ -21,6 +23,8 @@ public class PoblacionRifaData {
         setCedula(new SimpleStringProperty(poblacionRifa.getCedula()));
         setNombre(new SimpleStringProperty(poblacionRifa.getNombre()));
         setDepartamento(new SimpleStringProperty(poblacionRifa.getDepartamento()));
+        setPosicion(new SimpleStringProperty(poblacionRifa.getPosicion()));
+        setCampus(new SimpleStringProperty(poblacionRifa.getCampus()));
         setHabilitado(new SimpleBooleanProperty(poblacionRifa.isHabilitado()));
     }
 
@@ -71,5 +75,21 @@ public class PoblacionRifaData {
 
     public void setHabilitado(BooleanProperty habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public StringProperty getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(StringProperty posicion) {
+        this.posicion = posicion;
+    }
+
+    public StringProperty getCampus() {
+        return campus;
+    }
+
+    public void setCampus(StringProperty campus) {
+        this.campus = campus;
     }
 }

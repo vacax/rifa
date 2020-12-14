@@ -7,6 +7,9 @@ apply plugin: 'application'
 sourceCompatibility = 1.8
 //MainClass = "edu.pucmm.rifa.main.Main"
 
+//para el UTF 8
+compileJava.options.encoding = "UTF-8"
+
 repositories {
     mavenCentral()
 }

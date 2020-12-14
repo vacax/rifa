@@ -1,13 +1,12 @@
 package edu.pucmm.rifa.servicios;
 
 import edu.pucmm.rifa.dominios.PoblacionRifa;
-import edu.pucmm.rifa.dominios.Usuario;
+import edu.pucmm.rifa.encapsulaciones.Campus;
 import edu.pucmm.rifa.encapsulaciones.ControlDepartamentos;
 import edu.pucmm.rifa.encapsulaciones.Departamentos;
 import edu.pucmm.rifa.main.Main;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,6 +79,19 @@ public class PoblacionRifaService extends GestionDb<PoblacionRifa> {
     public List<PoblacionRifa> getListaPoblacionHabilitadoYPresenteNoGanador(){
         EntityManager em = getEntityManager();
         List<PoblacionRifa> lista = em.createQuery("select  p from PoblacionRifa p where p.habilitado=true and noPresente = false and ganador=false").getResultList();
+        return lista;
+    }
+
+    /**
+     *
+     * @param campus
+     * @return
+     */
+    public List<PoblacionRifa> getListaPoblacionHabilitadoYPresenteNoGanador(String campus){
+        System.out.println("Consultando las Población de Campus: "+campus);
+        EntityManager em = getEntityManager();
+        List<PoblacionRifa> lista = em.createQuery("select  p from PoblacionRifa p where p.campus=:campus and p.habilitado=true and noPresente = false and ganador=false")
+                .setParameter("campus", campus.trim()).getResultList();
         return lista;
     }
 
@@ -166,10 +178,18 @@ public class PoblacionRifaService extends GestionDb<PoblacionRifa> {
             }
             //
             d.setCantidad(d.getCantidad()+1);
+
+            Campus c = cd.getListaCampus().get(p.getCampus());
+            if(c == null){
+                c = new Campus(p.getCampus().trim());
+                cd.getListaCampus().put(c.getNombre(), c);
+            }
+            c.setCantidad(c.getCantidad()+1);
         }
         //
         Main.controlDepartamentos = cd;
-        Main.controlDepartamentos.listarDepartamentos();
+        Main.controlDepartamentos.imprimirListarDepartamentos();
+        Main.controlDepartamentos.imprimirListaCampus();
 
     }
 

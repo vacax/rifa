@@ -23,7 +23,7 @@ public class ListaGanadoresController {
     private TableView<GanadoresData> tabla;
 
     @FXML
-    private TableColumn<GanadoresData, String> cedulaCol, nombreCol,departamentoCol;
+    private TableColumn<GanadoresData, String> cedulaCol, nombreCol,departamentoCol, posicionCol, campusCol;
     @FXML
     private TableColumn<GanadoresData, Long> idCol;
 
@@ -39,6 +39,8 @@ public class ListaGanadoresController {
         cedulaCol.setCellValueFactory(cellData -> cellData.getValue().getCedula());
         nombreCol.setCellValueFactory(cellData -> cellData.getValue().getNombre());
         departamentoCol.setCellValueFactory(cellData -> cellData.getValue().getDepartamento());
+        posicionCol.setCellValueFactory(cellData -> cellData.getValue().getPosicion());
+        campusCol.setCellValueFactory(cellData -> cellData.getValue().getCampus());
         cargarGanadores();
     }
 

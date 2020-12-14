@@ -39,7 +39,7 @@ public class MainController {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Población Rifa");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setResizable(false);
+            dialogStage.setResizable(true);
             dialogStage.initOwner(mainApp.getPrimaryStage());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -65,7 +65,7 @@ public class MainController {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Listado de Ganadores");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setResizable(false);
+            dialogStage.setResizable(true);
             dialogStage.initOwner(mainApp.getPrimaryStage());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -91,7 +91,7 @@ public class MainController {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Listado de Participantes No Presentes");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setResizable(false);
+            dialogStage.setResizable(true);
             dialogStage.initOwner(mainApp.getPrimaryStage());
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);

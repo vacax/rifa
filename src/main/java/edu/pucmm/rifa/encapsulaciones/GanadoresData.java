@@ -13,6 +13,8 @@ public class GanadoresData {
     private StringProperty cedula;
     private StringProperty nombre;
     private StringProperty departamento;
+    private StringProperty posicion;
+    private StringProperty campus;
     private BooleanProperty habilitado;
 
     public GanadoresData( Ganadores ganadores){
@@ -22,6 +24,8 @@ public class GanadoresData {
         setNombre(new SimpleStringProperty(ganadores.getPoblacionRifa().getNombre()));
         setDepartamento(new SimpleStringProperty(ganadores.getPoblacionRifa().getDepartamento()));
         setHabilitado(new SimpleBooleanProperty(ganadores.isAprobado()));
+        setPosicion(new SimpleStringProperty(ganadores.getPoblacionRifa().getPosicion()));
+        setCampus(new SimpleStringProperty(ganadores.getPoblacionRifa().getCampus()));
     }
 
     public Ganadores getGanadores() {
@@ -71,5 +75,21 @@ public class GanadoresData {
 
     public void setHabilitado(BooleanProperty habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public StringProperty getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(StringProperty posicion) {
+        this.posicion = posicion;
+    }
+
+    public StringProperty getCampus() {
+        return campus;
+    }
+
+    public void setCampus(StringProperty campus) {
+        this.campus = campus;
     }
 }

@@ -78,4 +78,17 @@ public class GanadoresService extends GestionDb<Ganadores> {
         List<Ganadores> lista = em.createQuery("select  p from Ganadores p where p.aprobado=true").getResultList();
         return lista;
     }
+
+    /**
+     * Retorna los ganadores ordenados del ultimo al primero y limitando la cantidad.
+     * @param cantidad
+     * @return
+     */
+    public List<Ganadores> getListaGanadoresOrdenados(int cantidad){
+        EntityManager em = getEntityManager();
+        List<Ganadores> lista = em.createQuery("select  p from Ganadores p where p.aprobado=true order by p.id desc")
+                .setMaxResults(cantidad)
+                .getResultList();
+        return lista;
+    }
 }

@@ -16,6 +16,8 @@ public class PoblacionRifa implements Serializable {
     private String cedula;
     private String nombre;
     private String departamento;
+    private String posicion;
+    private String campus;
     private boolean habilitado = true;
     private boolean noPresente = false;
     private boolean ganador = false;
@@ -76,6 +78,22 @@ public class PoblacionRifa implements Serializable {
         this.noPresente = noPresente;
     }
 
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
+
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
+
     @Override
     public String toString() {
         return "PoblacionRifa{" +
@@ -83,8 +101,11 @@ public class PoblacionRifa implements Serializable {
                 ", cedula='" + cedula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", departamento='" + departamento + '\'' +
+                ", posicion='" + posicion + '\'' +
+                ", campus='" + campus + '\'' +
                 ", habilitado=" + habilitado +
                 ", noPresente=" + noPresente +
+                ", ganador=" + ganador +
                 '}';
     }
 }

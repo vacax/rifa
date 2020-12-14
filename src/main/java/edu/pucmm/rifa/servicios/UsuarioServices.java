@@ -1,5 +1,6 @@
 package edu.pucmm.rifa.servicios;
 
+import edu.pucmm.rifa.dominios.Parametro;
 import edu.pucmm.rifa.dominios.PoblacionRifa;
 import edu.pucmm.rifa.dominios.Rifa;
 import edu.pucmm.rifa.dominios.Usuario;
@@ -64,6 +65,12 @@ public class UsuarioServices extends GestionDb<Usuario> {
             em.persist(rifa);
             em.getTransaction().commit();
 
+            Parametro parametro = em.find(Parametro.class, Parametro.TipoParametro.ULTIMO_CAMPUS.name());
+            if(parametro==null){
+                em.getTransaction().begin();
+                em.persist(new Parametro(Parametro.TipoParametro.ULTIMO_CAMPUS.name(), Parametro.TipoParametro.ULTIMO_CAMPUS.name(), ""));
+                em.getTransaction().commit();
+            }
 
         }
 

@@ -4,15 +4,12 @@ import edu.pucmm.rifa.dominios.PoblacionRifa;
 import edu.pucmm.rifa.encapsulaciones.PoblacionRifaData;
 import edu.pucmm.rifa.main.Main;
 import edu.pucmm.rifa.servicios.PoblacionRifaService;
-import edu.pucmm.rifa.utilidades.Utilidades;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.FileChooser;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -24,7 +21,7 @@ public class PoblacionRifaNoPresenteController {
     private TableView<PoblacionRifaData> tabla;
 
     @FXML
-    private TableColumn<PoblacionRifaData, String> cedulaCol, nombreCol,departamentoCol;
+    private TableColumn<PoblacionRifaData, String> cedulaCol, nombreCol,departamentoCol, posicionCol, campusCol;
     @FXML
     private TableColumn<PoblacionRifaData, Long> idCol;
 
@@ -41,9 +38,11 @@ public class PoblacionRifaNoPresenteController {
         cedulaCol.setCellValueFactory(cellData -> cellData.getValue().getCedula());
         nombreCol.setCellValueFactory(cellData -> cellData.getValue().getNombre());
         departamentoCol.setCellValueFactory(cellData -> cellData.getValue().getDepartamento());
+        posicionCol.setCellValueFactory(cellData -> cellData.getValue().getPosicion());
+        campusCol.setCellValueFactory(cellData -> cellData.getValue().getCampus());
 
         //listando el metodo.
-        cargarPoblacionRifa();
+        cargarParticipantesNoPresentes();
 
 
     }
@@ -51,7 +50,7 @@ public class PoblacionRifaNoPresenteController {
     /**
      * 
      */
-    private void cargarPoblacionRifa() {
+    private void cargarParticipantesNoPresentes() {
         //limpiar
         data.clear();
         //seteando la información
